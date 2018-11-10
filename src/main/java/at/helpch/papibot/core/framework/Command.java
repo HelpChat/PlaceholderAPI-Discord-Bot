@@ -10,10 +10,6 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 public abstract class Command {
     @Getter private final String[] command;
 
-    protected Command() {
-        this(null);
-    }
-
     protected Command(String... command) {
         this.command = command;
     }

@@ -17,7 +17,7 @@ import java.util.List;
 // ------------------------------
 @Singleton
 public final class EventHandler implements EventListener {
-    @Getter private static final List<GEvent> events = new ArrayList<>();
+    @Getter private final List<GEvent> events = new ArrayList<>();
 
     @Override
     public void onEvent(Event event) {

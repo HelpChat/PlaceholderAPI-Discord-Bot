@@ -6,6 +6,7 @@ import net.dv8tion.jda.core.events.channel.text.TextChannelDeleteEvent;
 import net.dv8tion.jda.core.events.channel.voice.VoiceChannelCreateEvent;
 import net.dv8tion.jda.core.events.channel.voice.VoiceChannelDeleteEvent;
 import net.dv8tion.jda.core.events.guild.GuildBanEvent;
+import net.dv8tion.jda.core.events.guild.GuildJoinEvent;
 import net.dv8tion.jda.core.events.guild.GuildUnbanEvent;
 import net.dv8tion.jda.core.events.guild.member.*;
 import net.dv8tion.jda.core.events.guild.voice.GuildVoiceJoinEvent;
@@ -49,6 +50,7 @@ public enum EventsEnum {
     VOICE_JOIN(GuildVoiceJoinEvent.class),
     VOICE_LEAVE(GuildVoiceLeaveEvent.class),
     VOICE_MOVE(GuildVoiceMoveEvent.class),
+    GUILD_JOIN(GuildJoinEvent.class),
     UNKNOWN(null);
 
     private final Class<? extends Event> event;

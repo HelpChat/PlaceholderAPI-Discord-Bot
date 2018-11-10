@@ -6,6 +6,7 @@ package at.helpch.papibot.core.objects.enums;
 // ------------------------------
 public enum Registerables {
     FILES,
+    EVENTS,
     COMMANDS,
     BOT,
     MYSQL,

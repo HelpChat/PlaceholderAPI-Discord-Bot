@@ -1,6 +1,9 @@
 package at.helpch.papibot;
 
+import at.helpch.papibot.core.framework.Command;
 import at.helpch.papibot.core.handlers.EventHandler;
+import at.helpch.papibot.core.handlers.GEvent;
+import at.helpch.papibot.core.handlers.chat.CommandHandler;
 import at.helpch.papibot.core.objects.enums.Registerables;
 import at.helpch.papibot.core.objects.tasks.GRunnable;
 import at.helpch.papibot.core.objects.tasks.Task;
@@ -37,12 +40,13 @@ public final class PapiBot {
     @Inject private MySQLInitializer mySQLInitializer;
 
     @Inject private EventHandler eventHandler;
+    @Inject private CommandHandler commandHandler;
 
     void start(Injector injector) throws Exception {
         this.injector = injector;
 
         Stream.of(
-                FILES, COMMANDS, BOT, MYSQL, CONSOLE
+                FILES, EVENTS, COMMANDS, BOT, MYSQL, CONSOLE
         ).forEach(PapiBot.this::register);
 
         //noinspection InfiniteLoopStatement
@@ -56,18 +60,22 @@ public final class PapiBot {
     public void register(Registerables registerable) {
         switch (registerable) {
             case FILES:
-                Stream.of("config.json").forEach(i -> gFile.make(i, "./" + i, "/" + i));
+                Stream.of("config.json", "schema.sql").forEach(i -> gFile.make(i, "./" + i, "/" + i));
+                break;
+
+            case EVENTS:
+                REFLECTIONS.getSubTypesOf(GEvent.class).stream().map(injector::getInstance).forEach(eventHandler.getEvents()::add);
                 break;
 
             case COMMANDS:
-
+                REFLECTIONS.getSubTypesOf(Command.class).stream().map(injector::getInstance).forEach(commandHandler.getCommands()::add);
                 break;
 
             case BOT:
                 try {
                     jda = new JDABuilder(gFile.getFileConfiguration("config").getString("token"))
                             .setGame(Game.of(Game.GameType.WATCHING, "the eCloud"))
-                            .addEventListener()
+                            .addEventListener(eventHandler)
                             .build();
                 } catch (Exception e) {
                     e.printStackTrace();

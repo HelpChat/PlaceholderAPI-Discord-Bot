@@ -2,6 +2,8 @@ package at.helpch.papibot.core.storage.file;
 
 import com.google.gson.internal.LinkedTreeMap;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -109,6 +111,27 @@ public final class FileConfiguration {
         }
 
         return def.length >= 1 ? def[0] : NULL_NUM;
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<String> getStringList(String path) {
+        Object object;
+
+        try {
+            object = get(path);
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+
+        if (object instanceof List<?>) {
+            for (Object obj : (List<?>) object) {
+                if (obj instanceof String) {
+                    return (List<String>) object;
+                }
+            }
+        }
+
+        return new ArrayList<>();
     }
 
     @SuppressWarnings("unchecked")

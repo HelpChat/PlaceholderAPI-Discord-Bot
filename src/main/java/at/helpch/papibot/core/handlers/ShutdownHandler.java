@@ -2,6 +2,7 @@ package at.helpch.papibot.core.handlers;
 
 import at.helpch.papibot.PapiBot;
 import at.helpch.papibot.core.objects.tasks.Task;
+import co.aikar.idb.DB;
 import com.google.inject.Inject;
 
 // ------------------------------
@@ -15,5 +16,6 @@ public final class ShutdownHandler extends Thread {
     public void run() {
         papiBot.getJda().shutdownNow();
         Task.shutdown();
+        DB.close();
     }
 }

@@ -82,7 +82,7 @@ public final class GFile {
         }
 
         populatorMap.put("file", file);
-        ITEMMAPS.put(name, populatorMap);
+        itemMaps.put(name, populatorMap);
     }
 
     /**
@@ -91,7 +91,7 @@ public final class GFile {
      * @return Returns a FileConfiguration instance of the referenced GFile.
      */
     public FileConfiguration getFileConfiguration(String name) {
-        Object item = ITEMMAPS.get(name).get("file-configuration");
+        Object item = itemMaps.get(name).get("file-configuration");
 
         if (item instanceof FileConfiguration) {
             return (FileConfiguration) item;
