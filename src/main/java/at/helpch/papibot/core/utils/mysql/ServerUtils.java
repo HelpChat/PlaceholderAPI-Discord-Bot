@@ -11,7 +11,7 @@ public final class ServerUtils {
     public static void addServer(long guildId) {
         Task.async(r -> {
             try {
-                DB.executeInsert("INSERT INTO `papibot_servers` (`id`, `guild_id`, `prefix) VALUES ('0', ?, ?);", guildId, "?papi");
+                DB.executeInsert("INSERT INTO `papibot_servers` (`id`, `guild_id`, `prefix`) VALUES ('0', ?, ?);", guildId, "?papi");
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -17,7 +17,7 @@ public final class PrefixCommand extends Command {
 
     @Override
     protected void execute(GuildMessageReceivedEvent e, String[] args) {
-        if (e.getMember() == e.getGuild().getOwner() || e.getAuthor().getIdLong() == 181675431362035712L) {
+        if (e.getMember() == e.getGuild().getOwner()) {
             if (args.length >= 1) {
                 ServerUtils.setPrefix(e.getGuild().getIdLong(), args[0]);
                 e.getChannel().sendMessage(e.getAuthor().getAsMention() + " :white_check_mark: **Prefix successfully set to `" + args[0] + "`.**").queue(s -> s.delete().queueAfter(15, TimeUnit.SECONDS));
