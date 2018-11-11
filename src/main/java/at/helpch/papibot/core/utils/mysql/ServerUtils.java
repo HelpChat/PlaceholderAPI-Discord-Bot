@@ -12,22 +12,22 @@ public final class ServerUtils {
         String prefix;
 
         try {
-            prefix = DB.getFirstRowAsync("SELECT * FROM `papibot_server` WHERE `guild_id`=?;", guildId).get().getString("prefix");
+            prefix = DB.getFirstRowAsync("SELECT * FROM `papibot_servers` WHERE `guild_id`=?;", guildId).get().getString("prefix");
         } catch (Exception ignored) {
             prefix = "?papi";
         }
 
-        return prefix;
+        return prefix.toLowerCase();
     }
 
     public static void setPrefix(long guildId, String prefix) {
         try {
-            if (DB.getFirstRowAsync("SELECT * FROM `papibot_server` WHERE `guild_id`=?;", guildId).get() != null) {
-                DB.executeUpdateAsync("UPDATE `papibot_server` SET `prefix`=? WHERE `guild_id`=?;", guildId);
+            if (DB.getFirstRowAsync("SELECT * FROM `papibot_servers` WHERE `guild_id`=?;", guildId).get() != null) {
+                DB.executeUpdateAsync("UPDATE `papibot_servers` SET `prefix`=? WHERE `guild_id`=?;", prefix.toLowerCase(), guildId);
             } else {
                 Task.async(r -> {
                     try {
-                        DB.executeInsert("INSERT INTO `papibot_servers` (`id`, `guild_id`, `prefix`) VALUES ('0', ?, ?);", guildId, prefix);
+                        DB.executeInsert("INSERT INTO `papibot_servers` (`id`, `guild_id`, `prefix`) VALUES ('0', ?, ?);", guildId, prefix.toLowerCase());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
