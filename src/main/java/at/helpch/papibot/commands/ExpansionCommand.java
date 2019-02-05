@@ -45,7 +45,7 @@ public final class ExpansionCommand extends Command {
 
                     if (placeholders.size() == 1) {
                         MessageEmbed message = new EmbedBuilder()
-                                .setTitle(title)
+                                .setTitle(title, "https://api.extendedclip.com/expansions/" + args[0].toLowerCase())
                                 .addField("Placeholders: ", exp.getPlaceholders().get(0) + "\n\u200C", false)
                                 .addField(command)
                                 .setFooter(footer[0], footer[1])
@@ -65,7 +65,7 @@ public final class ExpansionCommand extends Command {
 
                         placeholders.forEach(somePlaceholders -> {
                             EmbedBuilder embed = new EmbedBuilder()
-                                    .setTitle(title)
+                                    .setTitle(title, "https://api.extendedclip.com/expansions/" + args[0].toLowerCase())
                                     .setFooter(footer[0], footer[1])
                                     .setTimestamp(ZonedDateTime.now());
 
