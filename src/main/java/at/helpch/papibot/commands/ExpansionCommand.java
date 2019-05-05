@@ -46,7 +46,7 @@ public final class ExpansionCommand extends Command {
 
                         if (placeholders.size() == 1) {
                             MessageEmbed message = new EmbedBuilder()
-                                    .setTitle(title)
+                                    .setTitle(title, "https://api.extendedclip.com/expansions/" + args[0].toLowerCase())
                                     .addField("Placeholders: ", exp.getPlaceholders().get(0) + "\n\u200C", false)
                                     .addField(command)
                                     .setFooter(footer[0], footer[1])
