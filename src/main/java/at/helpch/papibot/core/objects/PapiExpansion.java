@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,7 @@ import java.util.Map;
 public final class PapiExpansion {
     private final Gson gson;
     private FileConfiguration json;
-    @Getter private boolean success = false;
+    @Getter private SuccessTypes success = SuccessTypes.SUCCESS;
 
     public PapiExpansion(Gson gson) {
         this.gson = gson;
@@ -37,8 +38,12 @@ public final class PapiExpansion {
             HttpResponse response = client.execute(get);
             Map<String, Object> itemMap = gson.fromJson(EntityUtils.toString(response.getEntity()), LinkedTreeMap.class);
             json = new FileConfiguration((Map<String, Object>) itemMap.get(itemMap.keySet().toArray(new String[]{})[0]));
-            success = true;
-        } catch (Exception ignored) {}
+        } catch (IOException e) {
+            success = SuccessTypes.ECLOUD_DOWN;
+            return this;
+        } catch (Exception e) {
+            success = SuccessTypes.UNKNOWN_EXPANSION;
+        }
 
         return this;
     }
@@ -53,5 +58,11 @@ public final class PapiExpansion {
 
     public String getVersion() {
         return json.getString("latest_version", "1.0");
+    }
+
+    public enum SuccessTypes {
+        SUCCESS,
+        UNKNOWN_EXPANSION,
+        ECLOUD_DOWN
     }
 }

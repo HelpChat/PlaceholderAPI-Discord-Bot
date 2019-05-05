@@ -1,27 +1,31 @@
 package at.helpch.papibot.core.objects.enums;
 
-import net.dv8tion.jda.core.events.Event;
-import net.dv8tion.jda.core.events.channel.text.TextChannelCreateEvent;
-import net.dv8tion.jda.core.events.channel.text.TextChannelDeleteEvent;
-import net.dv8tion.jda.core.events.channel.voice.VoiceChannelCreateEvent;
-import net.dv8tion.jda.core.events.channel.voice.VoiceChannelDeleteEvent;
-import net.dv8tion.jda.core.events.guild.GuildBanEvent;
-import net.dv8tion.jda.core.events.guild.GuildJoinEvent;
-import net.dv8tion.jda.core.events.guild.GuildLeaveEvent;
-import net.dv8tion.jda.core.events.guild.GuildUnbanEvent;
-import net.dv8tion.jda.core.events.guild.member.*;
-import net.dv8tion.jda.core.events.guild.voice.GuildVoiceJoinEvent;
-import net.dv8tion.jda.core.events.guild.voice.GuildVoiceLeaveEvent;
-import net.dv8tion.jda.core.events.guild.voice.GuildVoiceMoveEvent;
-import net.dv8tion.jda.core.events.message.MessageBulkDeleteEvent;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageDeleteEvent;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageUpdateEvent;
-import net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEvent;
-import net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionRemoveEvent;
-import net.dv8tion.jda.core.events.role.RoleCreateEvent;
-import net.dv8tion.jda.core.events.role.RoleDeleteEvent;
-import net.dv8tion.jda.core.events.role.update.RoleUpdateColorEvent;
+import net.dv8tion.jda.api.events.GenericEvent;
+import net.dv8tion.jda.api.events.channel.text.TextChannelCreateEvent;
+import net.dv8tion.jda.api.events.channel.text.TextChannelDeleteEvent;
+import net.dv8tion.jda.api.events.channel.voice.VoiceChannelCreateEvent;
+import net.dv8tion.jda.api.events.channel.voice.VoiceChannelDeleteEvent;
+import net.dv8tion.jda.api.events.guild.GuildBanEvent;
+import net.dv8tion.jda.api.events.guild.GuildJoinEvent;
+import net.dv8tion.jda.api.events.guild.GuildLeaveEvent;
+import net.dv8tion.jda.api.events.guild.GuildUnbanEvent;
+import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
+import net.dv8tion.jda.api.events.guild.member.GuildMemberLeaveEvent;
+import net.dv8tion.jda.api.events.guild.member.GuildMemberRoleAddEvent;
+import net.dv8tion.jda.api.events.guild.member.GuildMemberRoleRemoveEvent;
+import net.dv8tion.jda.api.events.guild.member.update.GuildMemberUpdateNicknameEvent;
+import net.dv8tion.jda.api.events.guild.voice.GuildVoiceJoinEvent;
+import net.dv8tion.jda.api.events.guild.voice.GuildVoiceLeaveEvent;
+import net.dv8tion.jda.api.events.guild.voice.GuildVoiceMoveEvent;
+import net.dv8tion.jda.api.events.message.MessageBulkDeleteEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageDeleteEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent;
+import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent;
+import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionRemoveEvent;
+import net.dv8tion.jda.api.events.role.RoleCreateEvent;
+import net.dv8tion.jda.api.events.role.RoleDeleteEvent;
+import net.dv8tion.jda.api.events.role.update.RoleUpdateColorEvent;
 
 // ------------------------------
 // Copyright (c) PiggyPiglet 2018
@@ -47,7 +51,7 @@ public enum EventsEnum {
     ROLE_UPDATE(RoleUpdateColorEvent.class),
     ROLE_GIVE(GuildMemberRoleAddEvent.class),
     ROLE_REMOVE(GuildMemberRoleRemoveEvent.class),
-    NICKNAME_CHANGE(GuildMemberNickChangeEvent.class),
+    NICKNAME_CHANGE(GuildMemberUpdateNicknameEvent.class),
     VOICE_JOIN(GuildVoiceJoinEvent.class),
     VOICE_LEAVE(GuildVoiceLeaveEvent.class),
     VOICE_MOVE(GuildVoiceMoveEvent.class),
@@ -55,13 +59,13 @@ public enum EventsEnum {
     GUILD_LEAVE(GuildLeaveEvent.class),
     UNKNOWN(null);
 
-    private final Class<? extends Event> event;
+    private final Class<? extends GenericEvent> event;
 
-    EventsEnum(Class<? extends Event> c) {
+    EventsEnum(Class<? extends GenericEvent> c) {
         this.event = c;
     }
 
-    public static EventsEnum fromEvent(Event e) {
+    public static EventsEnum fromEvent(GenericEvent e) {
         for (EventsEnum type : values()) {
             if (type.event == e.getClass()) {
                 return type;
@@ -71,7 +75,7 @@ public enum EventsEnum {
         return UNKNOWN;
     }
 
-    public static boolean contains(Event e) {
+    public static boolean contains(GenericEvent e) {
         for (EventsEnum type : values()) {
             if (type.event == e.getClass()) {
                 return true;

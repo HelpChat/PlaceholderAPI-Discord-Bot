@@ -13,9 +13,9 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.Singleton;
 import lombok.Getter;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.entities.Game;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Activity;
 import org.reflections.Reflections;
 
 import java.util.Scanner;
@@ -74,8 +74,8 @@ public final class PapiBot {
             case BOT:
                 try {
                     jda = new JDABuilder(gFile.getFileConfiguration("config").getString("token"))
-                            .setGame(Game.of(Game.GameType.WATCHING, "the eCloud"))
-                            .addEventListener(eventHandler)
+                            .setActivity(Activity.watching("the eCloud"))
+                            .addEventListeners(eventHandler)
                             .build();
                 } catch (Exception e) {
                     e.printStackTrace();

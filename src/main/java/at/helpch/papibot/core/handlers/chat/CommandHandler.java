@@ -9,8 +9,8 @@ import at.helpch.papibot.core.utils.string.StringUtils;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import lombok.Getter;
-import net.dv8tion.jda.core.events.Event;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.events.GenericEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +32,7 @@ public final class CommandHandler extends GEvent {
     }
 
     @Override
-    protected void execute(Event event) {
+    protected void execute(GenericEvent event) {
         GuildMessageReceivedEvent e = (GuildMessageReceivedEvent) event;
         String msg = e.getMessage().getContentRaw();
         String prefix = ServerUtils.getPrefix(e.getGuild().getIdLong());
@@ -57,7 +57,7 @@ public final class CommandHandler extends GEvent {
             }
 
             if (!success) {
-                e.getChannel().sendMessage(e.getAuthor().getAsMention() + " Unknown command, type `?papi help` for help.").queue(s -> s.delete().queueAfter(15, TimeUnit.SECONDS));
+                e.getChannel().sendMessage(e.getAuthor().getAsMention() + " Unknown command, type `" + prefix + " help` for help.").queue(s -> s.delete().queueAfter(15, TimeUnit.SECONDS));
             }
 
             e.getMessage().delete().queue();

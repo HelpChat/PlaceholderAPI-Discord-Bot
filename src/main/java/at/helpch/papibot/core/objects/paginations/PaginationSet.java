@@ -27,8 +27,8 @@ public final class PaginationSet {
      * @param emote The emote that the PaginationPage belongs to.
      * @return Returns the PaginationPage belonging to the referenced emote.
      */
-    public PaginationPage getPage(Object emote) {
-        AtomicReference<PaginationPage> page = new AtomicReference<>();
+    public PaginationPage getPage(Object emote) throws PageNotFoundException {
+        AtomicReference<PaginationPage> page = new AtomicReference<>(null);
 
         pages.forEach(page_ -> {
             if (page_.getEmote().equals(emote)) {

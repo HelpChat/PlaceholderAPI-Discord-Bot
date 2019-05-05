@@ -3,7 +3,7 @@ package at.helpch.papibot.core.handlers;
 import at.helpch.papibot.core.objects.enums.EventsEnum;
 import at.helpch.papibot.core.objects.tasks.GRunnable;
 import lombok.Getter;
-import net.dv8tion.jda.core.events.Event;
+import net.dv8tion.jda.api.events.GenericEvent;
 
 // ------------------------------
 // Copyright (c) PiggyPiglet 2018
@@ -17,9 +17,9 @@ public abstract class GEvent {
         this.events = events;
     }
 
-    protected abstract void execute(Event event);
+    protected abstract void execute(GenericEvent event);
 
-    public void run(Event event, GRunnable instance) {
+    public void run(GenericEvent event, GRunnable instance) {
         this.instance = instance;
         execute(event);
     }

@@ -14,7 +14,7 @@ public final class ShutdownHandler extends Thread {
 
     @Override
     public void run() {
-        papiBot.getJda().shutdownNow();
+        papiBot.getJda();
         Task.shutdown();
         DB.close();
     }

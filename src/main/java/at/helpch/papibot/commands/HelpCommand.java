@@ -2,8 +2,8 @@ package at.helpch.papibot.commands;
 
 import at.helpch.papibot.core.framework.Command;
 import at.helpch.papibot.core.utils.mysql.ServerUtils;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.time.ZonedDateTime;
 import java.util.concurrent.TimeUnit;

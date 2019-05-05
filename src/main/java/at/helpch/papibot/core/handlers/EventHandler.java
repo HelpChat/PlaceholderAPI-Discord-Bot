@@ -4,8 +4,8 @@ import at.helpch.papibot.core.objects.enums.EventsEnum;
 import at.helpch.papibot.core.objects.tasks.Task;
 import com.google.inject.Singleton;
 import lombok.Getter;
-import net.dv8tion.jda.core.events.Event;
-import net.dv8tion.jda.core.hooks.EventListener;
+import net.dv8tion.jda.api.events.GenericEvent;
+import net.dv8tion.jda.api.hooks.EventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +20,7 @@ public final class EventHandler implements EventListener {
     @Getter private final List<GEvent> events = new ArrayList<>();
 
     @Override
-    public void onEvent(Event event) {
+    public void onEvent(GenericEvent event) {
         if (EventsEnum.contains(event)) {
             events.forEach(e -> {
                 if (Arrays.asList(e.getEvents()).contains(EventsEnum.fromEvent(event))) {

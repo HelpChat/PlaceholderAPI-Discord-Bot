@@ -3,9 +3,9 @@ package at.helpch.papibot.core.handlers.misc;
 import at.helpch.papibot.core.handlers.GEvent;
 import at.helpch.papibot.core.objects.enums.EventsEnum;
 import at.helpch.papibot.core.utils.mysql.ServerUtils;
-import net.dv8tion.jda.core.events.Event;
-import net.dv8tion.jda.core.events.guild.GuildJoinEvent;
-import net.dv8tion.jda.core.events.guild.GuildLeaveEvent;
+import net.dv8tion.jda.api.events.GenericEvent;
+import net.dv8tion.jda.api.events.guild.GuildJoinEvent;
+import net.dv8tion.jda.api.events.guild.GuildLeaveEvent;
 
 // ------------------------------
 // Copyright (c) PiggyPiglet 2018
@@ -17,7 +17,7 @@ public final class MySQLHandler extends GEvent {
     }
 
     @Override
-    protected void execute(Event event) {
+    protected void execute(GenericEvent event) {
         switch (EventsEnum.fromEvent(event)) {
             case GUILD_JOIN:
                 ServerUtils.addServer(((GuildJoinEvent) event).getGuild().getIdLong());

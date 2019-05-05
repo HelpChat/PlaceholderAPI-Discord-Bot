@@ -1,8 +1,8 @@
 package at.helpch.papibot.core.objects.paginations;
 
 import lombok.Getter;
-import net.dv8tion.jda.core.entities.Emote;
-import net.dv8tion.jda.core.entities.MessageEmbed;
+import net.dv8tion.jda.api.entities.Emote;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 
 // ------------------------------
 // Copyright (c) PiggyPiglet 2018

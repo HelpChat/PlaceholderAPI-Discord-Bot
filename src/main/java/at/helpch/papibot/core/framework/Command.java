@@ -1,7 +1,7 @@
 package at.helpch.papibot.core.framework;
 
 import lombok.Getter;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 // ------------------------------
 // Copyright (c) PiggyPiglet 2018

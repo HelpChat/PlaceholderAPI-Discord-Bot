@@ -7,9 +7,8 @@ import at.helpch.papibot.core.objects.paginations.PaginationPage;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import com.google.inject.Inject;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.MessageEmbed;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -74,7 +73,7 @@ public final class ListCommand extends Command {
                         .setTitle(title[0], title[1])
                         .setTimestamp(ZonedDateTime.now());
 
-                PaginationPage page = new PaginationPage(embed.addField(new MessageEmbed.Field("Placeholders:", someKeys, false)).build(), unicodes.get(i.getAndIncrement()));
+                PaginationPage page = new PaginationPage(embed.addField("Placeholders:", someKeys, false).build(), unicodes.get(i.getAndIncrement()));
                 paginationBuilder.addPages(page);
             });
 

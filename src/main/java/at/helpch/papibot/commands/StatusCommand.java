@@ -1,7 +1,7 @@
 package at.helpch.papibot.commands;
 
 import at.helpch.papibot.core.framework.Command;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 
 import java.net.HttpURLConnection;
 import java.net.URL;

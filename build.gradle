@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'at.helpch'
-version = '1.1.1'
+version = '1.2.0'
 mainClassName = 'at.helpch.papibot.PapiBotBootstrap'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -45,4 +45,7 @@ shadowJar {
     relocate 'co.aikar.commands', 'at.helpch.papibot.idb'
 }
 
-compileJava.options.encoding = 'UTF-8'
+compileJava {
+    options.encoding = 'UTF-8'
+    options.incremental = false
+}
