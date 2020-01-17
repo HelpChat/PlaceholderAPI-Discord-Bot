@@ -3,7 +3,7 @@ package at.helpch.papibot.core.objects;
 import at.helpch.papibot.core.storage.file.FileConfiguration;
 import at.helpch.papibot.core.utils.string.StringUtils;
 import com.google.gson.Gson;
-import com.google.gson.internal.LinkedTreeMap;
+import com.google.gson.reflect.TypeToken;
 import lombok.Getter;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -29,15 +29,14 @@ public final class PapiExpansion {
         this.gson = gson;
     }
 
-    @SuppressWarnings("unchecked")
     public PapiExpansion load(String expansionName) {
         HttpClient client = HttpClientBuilder.create().build();
         HttpGet get = new HttpGet("https://api.extendedclip.com/v3/?name=" + expansionName);
 
         try {
             HttpResponse response = client.execute(get);
-            Map<String, Object> itemMap = gson.fromJson(EntityUtils.toString(response.getEntity()), LinkedTreeMap.class);
-            json = new FileConfiguration((Map<String, Object>) itemMap.get(itemMap.keySet().toArray(new String[]{})[0]));
+            List<Map<String, Object>> result = gson.fromJson(EntityUtils.toString(response.getEntity()), new TypeToken<List<Map<String, Object>>>(){}.getType());
+            json = new FileConfiguration(result.get(0));
         } catch (IOException e) {
             success = SuccessTypes.ECLOUD_DOWN;
             return this;
