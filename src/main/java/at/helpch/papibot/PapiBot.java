@@ -26,7 +26,7 @@ import java.util.stream.Stream;
 import static at.helpch.papibot.core.objects.enums.Registerables.*;
 
 // ------------------------------
-// Copyright (c) PiggyPiglet 2018
+// Copyright (c) PiggyPiglet 2020
 // https://www.piggypiglet.me
 // ------------------------------
 @Singleton
