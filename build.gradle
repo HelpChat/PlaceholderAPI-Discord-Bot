@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'at.helpch'
-version = '1.2.1'
+version = '1.2.2'
 mainClassName = 'at.helpch.papibot.PapiBotBootstrap'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
