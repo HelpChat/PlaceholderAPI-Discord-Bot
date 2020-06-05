@@ -42,6 +42,7 @@ public final class ExpansionCommand extends Command {
                         String title = "Placeholders for " + args[0];
                         String[] footer = new String[]{"Version " + exp.getVersion() + " by " + exp.getAuthor(), "https://cdn.discordapp.com/avatars/510750938672136193/e6120b4adf0c99226064d78094348592.webp"};
                         MessageEmbed.Field command = new MessageEmbed.Field("Command:", "```/papi ecloud download " + args[0] + "\n/papi reload```", false);
+                        MessageEmbed.Field manualDownload = new MessageEmbed.Field("Manual Download:", "[Download](https://api.extendedclip.com/expansions/" + args[0] + "/)", false);
                         List<String> placeholders = exp.getPlaceholders();
 
                         if (placeholders.size() == 1) {
@@ -49,6 +50,7 @@ public final class ExpansionCommand extends Command {
                                     .setTitle(title, "https://api.extendedclip.com/expansions/" + args[0].toLowerCase())
                                     .addField("Placeholders: ", exp.getPlaceholders().get(0) + "\n\u200C", false)
                                     .addField(command)
+                                    .addField(manualDownload)
                                     .setFooter(footer[0], footer[1])
                                     .setTimestamp(ZonedDateTime.now())
                                     .build();
