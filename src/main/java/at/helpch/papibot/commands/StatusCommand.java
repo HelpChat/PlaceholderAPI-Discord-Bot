@@ -19,7 +19,7 @@ public final class StatusCommand extends Command {
     @Override
     protected void execute(GuildMessageReceivedEvent e, String[] args) {
         try {
-            HttpURLConnection con = (HttpURLConnection) new URL("https://api.extendedclip.com/").openConnection();
+            HttpURLConnection con = (HttpURLConnection) new URL("https://api.extendedclip.com/home/").openConnection();
 
             if (con.getResponseCode() != HttpURLConnection.HTTP_OK) {
                 e.getChannel().sendMessage(e.getAuthor().getAsMention() + ":warning: **The eCloud is currently non responsive, please report this to staff in https://helpch.at/discord**").queue(s -> s.delete().queueAfter(45, TimeUnit.SECONDS));
