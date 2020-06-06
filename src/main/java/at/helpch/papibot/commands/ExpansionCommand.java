@@ -72,7 +72,7 @@ public final class ExpansionCommand extends Command {
                                         .setFooter(footer[0], footer[1])
                                         .setTimestamp(ZonedDateTime.now());
 
-                                PaginationPage page = new PaginationPage(embed.addField("Placeholders:", somePlaceholders + "\n\u200C", false).addField(command).build(), unicodes.get(i.getAndIncrement()));
+                                PaginationPage page = new PaginationPage(embed.addField("Placeholders:", somePlaceholders + "\n\u200C", false).addField(command).addField(manualDownload).build(), unicodes.get(i.getAndIncrement()));
                                 paginationBuilder.addPages(page);
                             });
 
