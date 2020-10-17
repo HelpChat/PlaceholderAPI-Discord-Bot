@@ -2,12 +2,12 @@ plugins {
     id 'java'
     id 'idea'
     id 'application'
-    id 'io.franzbecker.gradle-lombok' version '1.14'
-    id 'com.github.johnrengelman.shadow' version '5.2.0'
+    id 'io.franzbecker.gradle-lombok' version '4.0.0'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
 }
 
 group = 'at.helpch'
-version = '1.2.2'
+version = '1.2.3'
 mainClassName = 'at.helpch.papibot.PapiBotBootstrap'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
