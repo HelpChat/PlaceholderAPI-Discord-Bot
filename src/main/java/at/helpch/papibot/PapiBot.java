@@ -73,7 +73,7 @@ public final class PapiBot {
 
             case BOT:
                 try {
-                    jda = new JDABuilder(gFile.getFileConfiguration("config").getString("token"))
+                    jda = JDABuilder.createDefault(gFile.getFileConfiguration("config").getString("token"))
                             .setActivity(Activity.watching("the eCloud"))
                             .addEventListeners(eventHandler)
                             .build();
